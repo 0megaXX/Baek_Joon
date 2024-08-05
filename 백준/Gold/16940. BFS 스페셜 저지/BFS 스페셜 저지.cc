@@ -25,68 +25,76 @@ int sizz, cass;
 
 
 vector<set<int>> v;
-vector<int> bfs_order;
-vector<bool> visited;
+queue<int>q;
+queue<int>rs_q;
 
-void bfs(int start) {
-    queue<int> q;
-    q.push(start);
-    visited[start] = true;
+void bfs()
+{
+	for (int a = 0; a < cass; a++)
+	{
+		int b;
+		cin >> b;
+		q.push(b);
+	}
 
-    int idx = 1; // 현재 순서
+	if (q.front() != 1)
+	{
+		cout << 0;
+		return;
+	}
+	rs_q.push(q.front());
+	q.pop();
 
-    while (!q.empty()) {
-        int current = q.front();
-        q.pop();
+	while (!rs_q.empty())
+	{
+		int cur = rs_q.front();
+		rs_q.pop();
 
-        set<int> child;
-        for (int neighbor : v[current]) 
-            if (!visited[neighbor]) 
-                child.insert(neighbor);      
-        
+		for (auto a = v[cur].begin(); a != v[cur].end(); a++)
+		{
 
-        for (int i = 0; i < child.size(); i++) {
-            if (idx >= bfs_order.size() || child.find(bfs_order[idx]) == child.end()) {
-                cout << 0;
-                return;
-            }
-            q.push(bfs_order[idx]);
-            visited[bfs_order[idx]] = true;
-            idx++;
-        }
-    }
+			if (v[cur].find(q.front()) != v[cur].end()) // 다음 가야할 노드가 현재 노드에 연결되어있다면
+			{
+				rs_q.push(q.front());
+				//cout << q.front() << "에 도착\n";
+				q.pop();
+			}
 
-    cout << 1;
+
+		}
+
+
+
+	}
+	if (q.empty())
+
+		cout << 1;
+
+	else
+		cout << 0;
+
 }
 
+
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    int cass;
-    cin >> cass;
 
-    v.resize(cass + 1);
-    visited.resize(cass + 1, false);
-    bfs_order.resize(cass);
+	cin >> cass;
 
-    for (int a = 0; a < cass - 1; a++) {
-        int b, c;
-        cin >> b >> c;
-        v[b].insert(c);
-        v[c].insert(b);
-    }
+	v.resize(cass + 1);
 
-    for (int a = 0; a < cass; a++) 
-        cin >> bfs_order[a];
-    
-    if (bfs_order[0] != 1) { // BFS 시작은 항상 1번 노드부터
-        cout << 0 << '\n';
-        return 0;
-    }
 
-    bfs(bfs_order[0]);
+	for (int a = 0; a < cass - 1; a++)
+	{
+		int b, c;
+		cin >> b >> c;
+		v[b].insert(c);
+		v[c].insert(b);
+	}
+	bfs();
 
 
 }
