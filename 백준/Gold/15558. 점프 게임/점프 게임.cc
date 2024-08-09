@@ -64,19 +64,19 @@ int ct = 0;
 				cout << 1;
 				exit(0);
 			}
-			if (y+1>ct && arr[x][y + 1] == 1 && dp[x][y + 1] > cur_cost + 1) // 한칸 전진
+			if (arr[x][y + 1] == 1 && dp[x][y + 1] > cur_cost + 1) // 한칸 전진
 			{
 				dp[x][y + 1] = cur_cost + 1;
 				q.push({ cur_cost + 1,{x,y + 1} });
 			}
 
-			if (y + k > ct && x == 0 && arr[x + 1][y + k] == 1 && dp[x + 1][y + k] > cur_cost + 1) // 반대로 넘어가서 k칸 전진
+			if ( x == 0 && arr[x + 1][y + k] == 1 && dp[x + 1][y + k] > cur_cost + 1) // 반대로 넘어가서 k칸 전진
 			{
 				dp[x + 1][y + k] = cur_cost + 1;
 				q.push({ cur_cost + 1,{x + 1,y + k} });
 			}
 
-			if (y + k > ct && x == 1 && arr[x - 1][y + k] == 1 && dp[x - 1][y + k] > cur_cost + 1)// 반대로 넘어가서 k칸 전진
+			if ( x == 1 && arr[x - 1][y + k] == 1 && dp[x - 1][y + k] > cur_cost + 1)// 반대로 넘어가서 k칸 전진
 			{
 				dp[x - 1][y + k] = cur_cost + 1;
 				q.push({ cur_cost + 1,{x - 1,y + k} });
