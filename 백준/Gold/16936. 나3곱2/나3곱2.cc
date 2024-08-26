@@ -32,7 +32,7 @@ void Solve(unsigned long long start)
     vector<unsigned long long> ans;
     ans.push_back(start);
 
-    for (int a = 1; a < n; a++) 
+    for (int a = 0; a < n; a++) 
         for (int b = 0; b < n; b++) 
         {
             if (v[b] * 3 == ans.back()) // 배열 맨 끝이 3으로 나눠지고 3으로 나눌때 현재 위치의 값이라면
