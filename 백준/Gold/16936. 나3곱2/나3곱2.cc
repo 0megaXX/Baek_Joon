@@ -35,7 +35,7 @@ void Solve(unsigned long long start)
     for (int a = 1; a < n; a++) 
         for (int b = 0; b < n; b++) 
         {
-            if (ans.back() % 3 == 0 && v[b] == ans.back() / 3) // 배열 맨 끝이 3으로 나눠지고 3으로 나눌때 현재 위치의 값이라면
+            if (v[b] * 3 == ans.back()) // 배열 맨 끝이 3으로 나눠지고 3으로 나눌때 현재 위치의 값이라면
                 ans.push_back(v[b]);
             
             else if (v[b] == ans.back() * 2) //배열 맨끝의 값 * 2가 현재 위치의 값이라면
@@ -46,8 +46,8 @@ void Solve(unsigned long long start)
 
     if (ans.size() == n) // 조합이 완성되었다면
     {
-        for (int k = 0; k < n; k++)
-            cout << ans[k] << " ";
+        for (int a = 0; a < n; a++)
+            cout << ans[a] << " ";
         exit(0);
     }
 
