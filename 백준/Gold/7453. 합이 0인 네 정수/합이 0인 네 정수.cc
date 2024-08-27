@@ -25,8 +25,8 @@ using namespace std;
 vector<vector<int>>arr(4, vector<int>(4000));
 vector<int>AB;
 vector<int>CD;
-  int cass;
-  long long rs = 0;
+int cass;
+long long rs = 0;
 
 void fn()
 {
@@ -37,24 +37,25 @@ void fn()
             CD.push_back(arr[2][a] + arr[3][b]);
         }
 
-    
+
 
     sort(AB.begin(), AB.end());
     sort(CD.begin(), CD.end());
 
     int AB_idx = 0;
-    int CD_idx = CD.size()-1;
+    int CD_idx = CD.size() - 1;
 
-    while (AB_idx < AB.size() && CD_idx>=0) // 한쪽의 탐색이 끝나면 종료
+    while (AB_idx < AB.size() && CD_idx >= 0) // 한쪽의 탐색이 끝나면 종료
     {
 
         if (AB[AB_idx] + CD[CD_idx] == 0)//두 합이 0이라면
         {
 
-            int ori = AB_idx;
+            int ori_AB = AB_idx;
+            int ori_CD = CD_idx;
             long long cur_AB_val = 0, cur_CD_val = 0;
 
-            while (AB[AB_idx] + CD[CD_idx] == 0) // AB배열에서 현재 값과 같은값의 수 리턴
+            while (AB[AB_idx]  == AB[ori_AB]) // AB배열에서 현재 값과 같은값의 수 리턴
             {
 
                 if (AB_idx >= AB.size()) // 아웃오브레인지 방지
@@ -65,7 +66,7 @@ void fn()
 
             }
 
-            while (AB[ori] + CD[CD_idx] == 0) // CD배열에서 현재 값과 같은값의 수 리턴
+            while (CD[CD_idx] == CD[ori_CD]) // CD배열에서 현재 값과 같은값의 수 리턴
             {
 
                 if (CD_idx < 0) // 아웃오브레인지 방지
@@ -97,7 +98,7 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-  
+
     cin >> cass;
 
     for (int a = 0; a < cass; a++)
