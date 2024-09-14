@@ -31,7 +31,7 @@ int main() {
     int cass;
     cin >> cass;
 
-    vector<int> arrows(1000001, 0); // 각 높이에서 사용할 화살의 개수
+    vector<int> bal(1000001, 0); // 각 높이의 풍선의 개수
 
     int shots = 0; // 필요한 화살의 개수
 
@@ -40,15 +40,16 @@ int main() {
         int height;
         cin >> height;
 
-        if (arrows[height] > 0) // 현재 높이에 맞출 화살이 있다면
+        if (bal[height] > 0) // 현재 높이로 떨어질 화살이 있다면
         {           
-            arrows[height]--;
-            arrows[height - 1]++; // 한 단계 낮은 높이에 맞출 화살을 추가
+            bal[height]--; // 현재 높이로 떨어질 화살 제거
+            bal[height - 1]++; // 한 단계 낮은 높이로 화살 이동
         }
-        else // 현재 높이에 맞출 화살이 없다면
+
+        else // 현재 높이에 떨어질 화살이 없다면
         {
-            shots++;
-            arrows[height - 1]++; // 한 단계 낮은 높이에 맞출 화살을 추가
+            shots++; // 화살 발사
+            bal[height - 1]++; // 한 단계 낮은 높이로 화살 이동
         }
     }
 
