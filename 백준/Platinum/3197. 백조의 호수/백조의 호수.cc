@@ -27,6 +27,8 @@ vector<string> arr;
 bool connect = false;
 pair<int, int> swan;
 queue<pair<int, int>> Move, Water, tmpMove, tmpWater;
+// Move = 이동할곳이 담겨있는 큐 , Water = 물들이 있는 곳이 담겨있는 큐
+// tmpMove = 이동한곳이 빙하라 녹을때까지 기다리는 큐, tmpWater = 빙하가 녹아 물이되길 기다리는 큐
 
 int dx[4]{ 0,0,-1,1 };
 int dy[4] = { -1, 1, 0, 0 };
@@ -51,8 +53,8 @@ void swanBFS() // 빙하에 모든 이동이 막힐 때 까지 거위를 이동�
 			{
 				visit[nx][ny] = true; // 방문처리
 
-				if (arr[nx][ny] == 'X')
-					tmpMove.push({ nx,ny }); // 간곳이 빙하라면
+				if (arr[nx][ny] == 'X')// 간곳이 빙하라면
+					tmpMove.push({ nx,ny }); 
 
 				else if (arr[nx][ny] == '.') // 간곳이 물이라면
 					Move.push({ nx,ny });
