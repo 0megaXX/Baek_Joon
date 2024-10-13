@@ -25,7 +25,7 @@ using namespace std;
 int N, M, K;
 
 vector<long long> v(1000001);
-vector<long long> tree(4000001);
+vector<long long> tree(3000001);
 
 // 구간 트리 초기화
 long long init(int node, int start, int end)
